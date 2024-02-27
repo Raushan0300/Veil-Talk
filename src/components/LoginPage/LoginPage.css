@@ -43,6 +43,9 @@
     font-weight: 600;
     cursor: pointer;
 }
+.login-btn:active{
+    opacity: 0.8;
+}
 
 @media (max-width: 768px){
     .login-text{
