@@ -39,6 +39,7 @@ const LoginPage = () => {
         }}>
         Log In
       </button>
+      <div>{data?.message}</div>
     </div>
   );
 };
