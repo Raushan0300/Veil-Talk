@@ -6,7 +6,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleLogin = async () => {
-    const response = await axios.post("https://veil-talk-backend.vercel.app/api/register", { email, password });
+    const response = await axios.post("https://veil-talk-backend.vercel.app/api/register", { "email":email, "pass":password });
     const data=response.data;
     console.log(data);
   };
