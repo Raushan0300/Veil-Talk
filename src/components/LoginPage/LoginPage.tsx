@@ -1,14 +1,15 @@
-import axios from "axios";
-import "./LoginPage.css";
 import { useState } from "react";
+import "./LoginPage.css";
+import { postData } from "../../Config/Config";
 
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [data, setData]=useState<any>([])
+  const [data, setData] = useState<any>([]);
   const handleLogin = async () => {
-    const response = await axios.post("https://veil-talk-backend.vercel.app/api/register", { "email":email, "pass":password });
-    setData(response?.data);
+    const body = { email: email, pass: password };
+    const response = await postData("register", body, {});
+    setData(response);
   };
   return (
     <div className="login-main-div">
@@ -18,17 +19,26 @@ const LoginPage = () => {
         className="email-input"
         placeholder="Email"
         value={email}
-        onChange={(e)=>{setEmail(e.target.value)}}
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
       />
       <input
         type="password"
         className="email-input"
         placeholder="Password"
         value={password}
-        onChange={(e)=>{setPassword(e.target.value)}}
+        onChange={(e) => {
+          setPassword(e.target.value);
+        }}
       />
-      <button className="login-btn" onClick={()=>{handleLogin()}}>Log In</button>
-      <div className="message">{data?.message}</div>
+      <button
+        className="login-btn"
+        onClick={() => {
+          handleLogin();
+        }}>
+        Log In
+      </button>
     </div>
   );
 };
