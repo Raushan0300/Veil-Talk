@@ -1,61 +1,80 @@
-.login-main-div{
-    background-color: #16201d;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    flex-direction: column;
+.login-main-div {
+  background-color: #16201d;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: column;
 }
-.login-text{
-    color: #fff;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 4rem;
-    font-weight: 600;
-    margin-top: 25vh;
+.login-text {
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-top: 25vh;
 }
-.email-input{
-    border: 1px solid #8c8c8c;
-    outline: none;
-    width: 20vw;
-    height: 5vh;
-    color: #16201d;
-    font-size: 1.1rem;
-    font-weight: 600;
-    padding: 0 0.7vw;
-    margin-top: 10vh;
-    border-radius: 1rem;
-    font-family: 'Courier New', Courier, monospace;
+.email-input {
+  border: 1px solid #8c8c8c;
+  outline: none;
+  width: 20vw;
+  height: 5vh;
+  color: #16201d;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0 0.7vw;
+  margin-top: 10vh;
+  border-radius: 1rem;
+  font-family: "Courier New", Courier, monospace;
 }
-.email-input::placeholder{
-    color: #8c8c8c;
+.pass-input {
+  border: 1px solid #8c8c8c;
+  outline: none;
+  width: 20vw;
+  height: 5vh;
+  color: #16201d;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0 0.7vw;
+  margin-top: 3vh;
+  border-radius: 1rem;
+  font-family: "Courier New", Courier, monospace;
 }
-.login-btn{
-    margin-top: 3vh;
-    height: 5vh;
-    width: 10vw;
-    border-radius: 1rem;
-    border: none;
-    outline: none;
-    background-color: #45a5a4;
-    color: #fff;
-    font-size: 1.1rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
-    cursor: pointer;
+.pass-input::placeholder {
+  color: #8c8c8c;
 }
-.login-btn:active{
-    opacity: 0.8;
+.email-input::placeholder {
+  color: #8c8c8c;
+}
+.login-btn {
+  margin-top: 3vh;
+  height: 5vh;
+  width: 10vw;
+  border-radius: 1rem;
+  border: none;
+  outline: none;
+  background-color: #45a5a4;
+  color: #fff;
+  font-size: 1.1rem;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
+  cursor: pointer;
+}
+.login-btn:active {
+  opacity: 0.8;
 }
 
-@media (max-width: 768px){
-    .login-text{
-        font-size: 1.7rem;
-        font-weight: 700;
-    }
-    .login-btn{
-        width: 60vw;
-    }
-    .email-input{
-        width: 80vw;
-    }
+@media (max-width: 768px) {
+  .login-text {
+    font-size: 1.7rem;
+    font-weight: 700;
+  }
+  .login-btn {
+    width: 60vw;
+  }
+  .email-input {
+    width: 80vw;
+  }
+  .pass-input {
+    width: 80vw;
+  }
 }

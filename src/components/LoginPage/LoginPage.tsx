@@ -25,7 +25,7 @@ const LoginPage = () => {
       />
       <input
         type="password"
-        className="email-input"
+        className="pass-input"
         placeholder="Password"
         value={password}
         onChange={(e) => {
