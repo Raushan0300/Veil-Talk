@@ -5,10 +5,10 @@ import { useState } from "react";
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [data, setData]=useState<any>([])
   const handleLogin = async () => {
     const response = await axios.post("https://veil-talk-backend.vercel.app/api/register", { "email":email, "pass":password });
-    const data=response.data;
-    console.log(data);
+    setData(response?.data);
   };
   return (
     <div className="login-main-div">
@@ -28,6 +28,7 @@ const LoginPage = () => {
         onChange={(e)=>{setPassword(e.target.value)}}
       />
       <button className="login-btn" onClick={()=>{handleLogin()}}>Log In</button>
+      <div className="message">{data?.message}</div>
     </div>
   );
 };

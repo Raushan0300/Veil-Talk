@@ -46,6 +46,10 @@
 .login-btn:active{
     opacity: 0.8;
 }
+.message{
+    color: #fff;
+    margin-top: 10px;
+}
 
 @media (max-width: 768px){
     .login-text{
