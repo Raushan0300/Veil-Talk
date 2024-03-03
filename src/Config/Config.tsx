@@ -33,4 +33,19 @@ const postData = async (url: any, body: any, customHeader = {}) => {
   }
 };
 
-export { getData, postData };
+const patchData=async(url:any, body:any, customHeader={})=>{
+  try{
+    const headers={
+      ...customHeader,
+    };
+    const response=await axios.patch(`${baseURL}/${url}`, body, {
+      headers:headers,
+    });
+    const result=response.data;
+    return result;
+  } catch(error){
+    throw error;
+  }
+}
+
+export { getData, postData, patchData };

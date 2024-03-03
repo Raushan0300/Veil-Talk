@@ -62,6 +62,13 @@
 .login-btn:active {
   opacity: 0.8;
 }
+.errormsg{
+  color: rgb(201, 33, 33);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 14px;
+  margin-top: 1vh;
+  font-weight: 500;
+}
 
 @media (max-width: 768px) {
   .login-text {
