@@ -18,7 +18,6 @@ const getData = async (url: any, customHeader = {}) => {
   }
 };
 
-
 const postData = async (url: any, body: any, customHeader = {}) => {
   try {
     const headers = {
