@@ -62,12 +62,25 @@
 .login-btn:active {
   opacity: 0.8;
 }
-.errormsg{
+.errormsg {
   color: rgb(201, 33, 33);
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: 14px;
   margin-top: 1vh;
   font-weight: 500;
+}
+.form-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rg-lg-text{
+  margin-top: 3vh;
+  color: #2cdcfb;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  font-family: 'Courier New', Courier, monospace;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
