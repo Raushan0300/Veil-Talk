@@ -25,6 +25,7 @@ const LoginPage = () => {
     const response = await postData("login", body, {});
     if (response.data) {
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       navigate("/home");
     } else {
       setPassError(response.response.data);

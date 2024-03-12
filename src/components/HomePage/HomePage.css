@@ -1,0 +1,150 @@
+.homePageContainer{
+    display: flex;
+    height: 100vh;
+    background-color: #16201d;
+}
+.homePageCoversationDiv{
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+    border-right: 3px solid #8c8c8c;
+}
+.homePageNameDiv{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    gap: 3vw;
+}
+.imageHome{
+    border-radius: 50%;
+    border: 1px solid #8c8c8c;
+    background-color: #fff;
+}
+.homeNameText{
+    color: #fff;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+}
+.homeDetailText{
+    color: #8c8c8c;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.homeConversationMsgText{
+    color: #ff9d1c;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-top: 5vh;
+    margin-left: 2vw;
+}
+.border{
+    border: 0.8px solid #8c8c8c;
+    margin-top: 10px;
+}
+.homeConversationList{
+    padding: 10px;
+    margin-top: 2vh;
+}
+.homeConversationItem{
+    display: flex;
+    align-items: center;
+    gap: 3vw;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.homeChatUser{
+    display: flex;
+    align-items: center;
+    gap: 5vw;
+    background-color: #fff;
+    width: 100%;
+    padding: 2.2vh 0;
+}
+.homeChatConatainer{
+    width: 70vw;
+}
+.homeChatNameText{
+    color:#121111;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 2.5rem;
+}
+.conversationSelected{
+    color: #fff;
+    align-self: center;
+    width: 70vw;
+    text-align: center;
+    font-size: 2.2rem;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+.homeChatMessages{
+    height: 70vh;
+    overflow-y: auto;
+}
+.homeChatMessageRight{
+    background-color: #c0c0c0;
+    margin-top: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 40%;
+    color: #121111;
+    border-radius: 10px 10px 0 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    margin-left: auto;
+}
+.homeChatMessageLeft{
+    background-color: #253392;
+    margin-top: 10px;
+    padding: 10px;
+    margin: 10px;
+    max-width: 40%;
+    color: #ffffff;
+    border-radius: 10px 10px 10px 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+}
+.homeChatInput{
+    display: flex;
+    align-items: center;
+    gap: 2vw;
+    padding: 10px;
+    background-color: #8f8888;
+    border-radius: 1rem;
+    margin: 10px;
+}
+.homeChatInputText{
+    width: 70vw;
+    height: 5vh;
+    border: 1px solid #8c8c8c;
+    outline: none;
+    border-radius: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.1rem;
+    margin: 10px;
+    align-self: center;
+}
+.homeNewChat{
+    color: #fff;
+    margin: 10px;
+    position: absolute;
+    right: 70vw;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    background-color: #ff9d1c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 2.5rem;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+    cursor: pointer;
+}
