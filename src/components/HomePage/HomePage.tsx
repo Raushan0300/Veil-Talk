@@ -39,8 +39,11 @@ const HomePage = () => {
   // console.log("messages=>",messages);
 
   useEffect(()=>{
-    setSocket(io("http://localhost:8080"));
+    setSocket(io("https://veiltalk-api.vercel.app"));
   },[]);
+
+  //http://localhost:8080;
+  //https://veiltalk-api.vercel.app
 
   useEffect(()=>{
     socket?.emit("addUser", userDetail?.id);
