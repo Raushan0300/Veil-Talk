@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
 import boyIcon from "./Images/boy.png";
 import girlIcon from "./Images/sister.png";
 import sendIcon from "./Images/send.png";
 import { getData, postData } from "../../Config/Config";
+import { io } from "socket.io-client";
+import { Dialog } from "@mui/material";
+import IsLoading from "../IsLoading/IsLoading";
 
 const HomePage = () => {
   const userDetail = JSON.parse(localStorage.getItem("user") || "{}");
@@ -21,14 +24,45 @@ const HomePage = () => {
 
   const [isPlusClicked, setIsPlusClicked] = useState<boolean>(false);
 
+  const [socket, setSocket] = useState<any>(null);
+
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const messageRef=useRef<any>(null);
+
+  useEffect(() => {
+    if (messageRef.current) {
+      messageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
+  // console.log("messages=>",messages);
+
+  useEffect(()=>{
+    setSocket(io("http://localhost:8080"));
+  },[]);
+
+  useEffect(()=>{
+    socket?.emit("addUser", userDetail?.id);
+    socket?.on("getUsers", (users: any[]) => {
+      console.log("active users=>",users);
+    })
+    socket?.on("getMessage", (data: any) => {
+      console.log("data=>",data);
+      setMessages((prevMessages: any[]) => [...prevMessages, { user: data.user, message: {message:data.message} }]);
+    })
+  }, [socket])
+
   useEffect(() => {
     const fetchConversations = async () => {
+      setOpenDialog(true);
       const response = await getData(`conversation/${userDetail.id}`);
       if (response) {
         setConversations(response);
       }
     };
     fetchConversations();
+    setOpenDialog(false);
   }, []);
 
   useEffect(()=>{
@@ -46,6 +80,7 @@ const HomePage = () => {
   }
 
   const fetchMessages = async (conversationsId: any, user:any) => {
+    setOpenDialog(true);
     setConversationSelected(true);
     const response = await getData(`message/${conversationsId}`);
     if (response) {
@@ -53,21 +88,38 @@ const HomePage = () => {
       setConversationId(conversationsId);
       setMessages(response);
     }
+    setOpenDialog(false);
   };
 
   const handleSendMessage=async()=>{
+    socket.emit("sendMessage", {senderId:userDetail.id, receiverId:selectedUser.id, message:messageText, conversationId:conversationId})
     const response=await postData("message", {conversationId:conversationId, senderId:userDetail.id, message:messageText});
     if(response){
       setMessageText("");
     }
   };
 
-  const handleNewConversation=async(userId:any)=>{
-    if(conversations.some((conversation:any)=>conversation.user.id===userId)){
-      console.log("Conversation already exists");
-    } else{
-      console.log("New Conversation");
+  const handleNewConversation = async (userId: any) => {
+    setOpenDialog(true);
+    if (conversations.some((conversation: any) => conversation.user.id === userId)) {
+      const conversation = conversations.find((conversation: any) => conversation.user.id === userId);
+      console.log(conversation);
+      await fetchMessages(conversation?.conversationId, conversation?.user);
+      setIsPlusClicked(false);
+    } else {
+      const response = await postData("conversation", { senderId: userDetail.id, receiverId: userId });
+      if (response) {
+        const updatedConversations = [...conversations, response];
+        setConversations(updatedConversations);
+        // console.log("updated conversation=>",updatedConversations);
+        // console.log("conversation=>",conversations);
+        const newConversation = updatedConversations.find((conversation: any) => conversation.user.id === userId);
+        // console.log(newConversation);
+        await fetchMessages(newConversation?.conversationId, newConversation?.user);
+        setIsPlusClicked(false);
+      }
     }
+    setOpenDialog(false);
   }
 
   return (
@@ -111,7 +163,7 @@ const HomePage = () => {
                   fetchMessages(conversationId, user);
                   }}
                 >
-                  {user.gender === "Male" ? (
+                  {user?.gender === "Male" ? (
                   <img
                     src={boyIcon}
                     alt="userIcon"
@@ -127,9 +179,9 @@ const HomePage = () => {
                   />
                   )}
                   <div>
-                  <div className="homeNameText">{user.name}</div>
+                  <div className="homeNameText">{user?.name}</div>
                   <div className="homeDetailText">
-                    {user.age} | {user.gender}
+                    {user?.age} | {user?.gender}
                   </div>
                   </div>
                 </div>
@@ -188,19 +240,22 @@ const HomePage = () => {
               width="75px"
             />
             <div>
-              <div className="homeChatNameText">{selectedUser.name}</div>
-              <div className="homeDetailText">{selectedUser.age} | {selectedUser.gender}</div>
+              <div className="homeChatNameText">{selectedUser?.name}</div>
+              <div className="homeDetailText">{selectedUser?.age} | {selectedUser?.gender}</div>
             </div>
           </div>
           <div className="homeChatMessages">
             {messages?.map(({ message, user: { id } }: any) => {
               return (
+                <>
                 <div
                   className={id===userDetail.id ? "homeChatMessageRight" : "homeChatMessageLeft"}
                   key={message.messageId}
                 >
                   {message.message}
                 </div>
+                <div ref={messageRef}></div>
+                </>
               );
             })}
           </div>
@@ -218,6 +273,20 @@ const HomePage = () => {
       ) : (
         <div className="conversationSelected">Select a Conversation</div>
       )}
+
+<Dialog
+          sx={{
+            "& .MuiDialog-container": {
+              "& .MuiPaper-root": {
+                padding: "16px",
+                width: "10%",
+                maxWidth: window.innerWidth / 2,
+              },
+            },
+          }}
+          open={openDialog}>
+          <IsLoading />
+        </Dialog>
     </div>
   );
 };
