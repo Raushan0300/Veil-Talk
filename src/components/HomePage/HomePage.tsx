@@ -39,7 +39,7 @@ const HomePage = () => {
   // console.log("messages=>",messages);
 
   useEffect(()=>{
-    setSocket(io("https://veiltalk-api.vercel.app/"));
+    setSocket(io("https://veil-talk-backend.onrender.com/"));
   },[]);
 
   //http://localhost:8080;
