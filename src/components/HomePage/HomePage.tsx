@@ -7,6 +7,7 @@ import { getData, postData } from "../../Config/Config";
 import { io } from "socket.io-client";
 import { Dialog } from "@mui/material";
 import IsLoading from "../IsLoading/IsLoading";
+import backIcon from "./Images/arrow.png";
 
 const HomePage = () => {
   const userDetail = JSON.parse(localStorage.getItem("user") || "{}");
@@ -28,7 +29,16 @@ const HomePage = () => {
 
   const [openDialog, setOpenDialog] = useState(false);
 
+  const [compval, setCompval] = useState<boolean>(false);
+
   const messageRef=useRef<any>(null);
+
+  useEffect(()=>{
+    if (window.innerWidth > 486) {
+      setCompval(true);
+    }
+
+  })
 
   useEffect(() => {
     if (messageRef.current) {
@@ -63,17 +73,19 @@ const HomePage = () => {
       if (response) {
         setConversations(response);
       }
+      setOpenDialog(false);
     };
     fetchConversations();
-    setOpenDialog(false);
   }, []);
 
   useEffect(()=>{
     const fetchAllUsers=async()=>{
+      setOpenDialog(true);
       const response=await getData("users");
       if(response){
         setAllUsers(response);
       }
+      setOpenDialog(false);
     };
     fetchAllUsers();
   },[])
@@ -232,11 +244,12 @@ const HomePage = () => {
             )}
           </div>
         </div>
-        <div className="homeNewChat" onClick={()=>{handlePlusClick()}}>{isPlusClicked?"-":"+"}</div>
+        {!conversationSelected&&!compval?<div className="homeNewChat" onClick={()=>{handlePlusClick()}}>{isPlusClicked?"-":"+"}</div>:compval&&<div className="homeNewChat" onClick={()=>{handlePlusClick()}}>{isPlusClicked?"-":"+"}</div>}
       </div>
       {conversationSelected ? (
         <div className="homeChatConatainer">
           <div className="homeChatUser">
+            {!compval&&<img src={backIcon} alt="back" width="32px" style={{marginLeft:"10px"}} onClick={()=>{setConversationSelected(false)}} />}
             <img
               src={boyIcon}
               alt="userIcon"
@@ -274,7 +287,9 @@ const HomePage = () => {
             </div>
         </div>
       ) : (
-        <div className="conversationSelected">Select a Conversation</div>
+        <>
+        {compval&&<div className="conversationSelected">Select a Conversation</div>}
+        </>
       )}
 
 <Dialog

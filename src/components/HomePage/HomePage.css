@@ -152,3 +152,41 @@
 ::-webkit-scrollbar{
     display: none;
 }
+@media screen and (max-width: 486px) {
+    .homePageContainer{
+        flex-direction: column;
+    }
+    .homePageCoversationDiv{
+        width: 100vw;
+        border-right: none;
+    }
+    .homeChatConatainer{
+        width: 100vw;
+    }
+    .homeChatUser{
+        gap: 2vw;
+    }
+    .homeChatNameText{
+        font-size: 1.2rem;
+    }
+    .homeChatMessageRight{
+        max-width: 60%;
+    }
+    .homeChatMessageLeft{
+        max-width: 60%;
+    }
+    .homeChatInputText{
+        width: 73vw;
+    }
+    .homeChatMessages{
+        height: 77.6vh;
+    }
+    .homeNewChat{
+        right: 0;
+        bottom: 0;
+    }
+    .homeChatInput{
+        padding: 0px;
+    }
+    
+}
