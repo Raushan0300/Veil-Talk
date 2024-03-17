@@ -54,6 +54,7 @@ const HomePage = () => {
 
   //http://localhost:8080;
   //https://veiltalk-api.vercel.app
+  // https://veil-talk-backend.onrender.com/
 
   useEffect(()=>{
     socket?.emit("addUser", userDetail?.id);
