@@ -49,7 +49,7 @@ const HomePage = () => {
   // console.log("messages=>",messages);
 
   useEffect(()=>{
-    setSocket(io("https://veil-talk-backend.onrender.com/"));
+    setSocket(io("https://veiltalk-api.up.railway.app/"));
   },[]);
 
   //http://localhost:8080;

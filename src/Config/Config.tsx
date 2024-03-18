@@ -2,7 +2,8 @@ import axios from "axios";
 
 // const baseURL = "http://localhost:8000/api";
 // const baseURL = "https://veiltalk-api.vercel.app/api";
-const baseURL="https://veil-talk-backend.onrender.com/api";
+// const baseURL="https://veil-talk-backend.onrender.com/api";
+const baseURL = "https://veiltalk-api.up.railway.app/api";
 
 const getData = async (url: any, customHeader = {}) => {
   try {
